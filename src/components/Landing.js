@@ -4,6 +4,19 @@ import GitHubProfile from "./GitHubProfile";
 import { client } from "../index";
 
 function Landing() {
+  const code =
+    window.location.href.match(/\?code=(.*)/) &&
+    window.location.href.match(/\?code=(.*)/)[1];
+  console.log("GitHub code: ", code);
+
+  if (code) {
+    fetch(`https://cv4me.herokuapp.com/authenticate/${code}`)
+      .then(response => response.json())
+      .then(({ token }) => {
+        console.log("Token: ", token);
+      });
+  }
+
   const [userLogin, setUserLogin] = useState("");
   const [user, setUser] = useState();
 
@@ -45,6 +58,15 @@ function Landing() {
               <button className="button">Submit</button>
             </div>
           </form>
+        </div>
+        <div>
+          <p>
+            <a
+              href={`https://github.com/login/oauth/authorize?client_id=${process.env.REACT_APP_GITHUB_APP_CLIENT_ID}&scope=user&redirect_uri=${process.env.REACT_APP_REDIRECT_URL}`}
+            >
+              Login at GitHub
+            </a>
+          </p>
         </div>
       </div>
     );
