@@ -1,0 +1,117 @@
+@import "../../../node_modules/bulma/bulma.sass";
+
+.page-wrapper {
+  width: 100vw;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-wrapper {
+  max-width: 50%;
+  .field.has-addons {
+    justify-content: center;
+  }
+}
+
+.float {
+  animation: float 3s infinite ease-in-out alternate-reverse;
+}
+
+@keyframes float {
+  from {
+    transform: translate(0, 0px);
+  }
+  50% {
+    transform: translate(0, -4px);
+  }
+  to {
+    transform: translate(0, 0px);
+  }
+}
+
+.rotate {
+  animation: rotate 40s infinite;
+  animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.flip-horizontal {
+  animation: flipHorizontal 8s infinite linear forwards;
+}
+
+@keyframes flipHorizontal {
+  0% {
+    transform: rotateY(0deg);
+  }
+  80% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(180deg);
+  }
+}
+
+.profile-image {
+  width: 200px;
+  height: 200px;
+}
+
+.profile-icon {
+  height: 14;
+  width: 14;
+  fill: silver;
+  color: red;
+}
+
+.remove-bullets li {
+  list-style: none;
+}
+
+.github-bio-textarea {
+  min-height: 50%;
+  width: 70%;
+}
+
+// input {
+//   border: 1px solid pink;
+//   background-color: rgba(208, 255, 183, 0.5);
+//   box-shadow: none;
+//   width: 50vw;
+// }
+
+// .outer {
+//   height: 40vh;
+//   width: 40vw;
+//   border: 1px pink solid;
+// }
+
+// .subform {
+//   display: flex;
+//   align-items: flex-end;
+//   justify-content: flex-end;
+//   position: relative;
+//   height: 100%;
+//   width: 100%;
+//   .subform-input-wrapper {
+//     position: absolute;
+//     height: 100%;
+//     width: 100%;
+//   }
+//   .subform-input-wrapper textarea {
+//     height: 100%;
+//     width: 100%;
+//   }
+//   .subform-button-wrapper {
+//     position: absolute;
+//   }
+// }
