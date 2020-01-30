@@ -1,16 +1,40 @@
-# Environment variables
+# Setup
+
+There are three parts to setting up this project. The first is required and the other two are just to allow for POST requests to the GitHub API. Skip the other two if you don't need to change user GitHub bios.
+
+## Required setup
+
+### Environment variables
+
+Set up these environment variables:
 
 - REACT_APP_GITHUB_ACCESS_TOKEN: Get your access token from GitHub [here](https://github.com/settings/tokens).
 
-- REACT_APP_GITHUB_APP_CLIENT_ID: Get it from your OAuth app in GitHub developer settings after setting it up.
+- REACT_APP_GITHUB_APP_CLIENT_ID: Only required for POST requests. Get it from your OAuth app in GitHub developer settings after setting it up.
 
-- REACT_APP_REDIRECT_URL: Must be the same redirect URL as set in your OAuth app in GitHub [developer settings](https://github.com/settings/developers).
+- REACT_APP_REDIRECT_URL: Only required for POST requests. Must be the same redirect URL as set in your OAuth app in GitHub [developer settings](https://github.com/settings/developers).
 
-- REACT_APP_NODE_ENV: optional.
+### Deploy
+
+Deploy it.
+
+## Required for POST requests
+
+### Set up OAuth app in GitHub
+
+Create and OAuth app in GitHub [developer settings](https://github.com/settings/developers).
+
+Set the "Authorization callback URL" to the app's top level URL. You'll need this same URL for the REACT_APP_REDIRECT_URL environment variable later.
+
+Note the client ID and secret for the next step.
+
+### Set up Gatekeeper
+
+Ideally, we shouldn't communicate OAuth credentials over a browser. But we also don't want to set up our own back end to do that. For a quick solution, deploy Gatekeeper to Heroku with this [convenient button](https://github.com/prose/gatekeeper#deploy-on-heroku). You'll have to fill in your GitHub OAuth app client ID and secret (from above).
 
 # Insecure connection error
 
-If you serve this over https, you might encounter a security error about your insecure websocket connection. If so, open up node_modules/react-dev-utils/webpackHotDevClient.js and go to:
+If you serve this over https in development, you might encounter a security error about your insecure websocket connection. If so, open up node_modules/react-dev-utils/webpackHotDevClient.js and go to:
 
 ```
 // Connect to WebpackDevServer via a socket.
@@ -27,11 +51,11 @@ var connection = new WebSocket(
 
 Change `protocol: 'ws',` to `protocol: location.protocol === "https:" ? 'wss' : 'ws',`.
 
-# Basic setup
+# Some important libraries
 
-GraphQL is handled by Apollo. Styling by Bulma and SCSS.
+GraphQL is handled by Apollo. Styling by Bulma and SCSS. Tests by Jest.
 
-# Learning sources
+# Some learning sources
 
 How to authenticate with GitHub on behalf of users using Heroku as a makeshift back end: [Implementing GitHub OAuth Flow in React](https://www.graphql.college/implementing-github-oauth-flow/)
 
