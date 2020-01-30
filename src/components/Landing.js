@@ -1,31 +1,14 @@
 import React, { useState } from "react";
-import { userQuery } from "./githubGraphql";
-import GitHubProfile from "./GitHubProfile";
-import { client } from "../index";
+import { getGitHubProfile, userQuery } from "./githubProfileGraphQL";
+import CV from "./CV";
 
 function Landing() {
-  const code =
-    window.location.href.match(/\?code=(.*)/) &&
-    window.location.href.match(/\?code=(.*)/)[1];
-  console.log("GitHub code: ", code);
-
-  if (code) {
-    fetch(`https://cv4me.herokuapp.com/authenticate/${code}`)
-      .then(response => response.json())
-      .then(({ token }) => {
-        console.log("Token: ", token);
-      });
-  }
-
   const [userLogin, setUserLogin] = useState("");
   const [user, setUser] = useState();
 
   const submitUserLogin = async e => {
     e.preventDefault();
-    client
-      .query({ query: userQuery, variables: { login: "alexalexyang" } })
-      .then(response => setUser(response.data.user))
-      .catch(err => console.log(err));
+    getGitHubProfile(userLogin, setUser);
   };
 
   const gitHubLoginForm = () => {
@@ -59,20 +42,11 @@ function Landing() {
             </div>
           </form>
         </div>
-        <div>
-          <p>
-            <a
-              href={`https://github.com/login/oauth/authorize?client_id=${process.env.REACT_APP_GITHUB_APP_CLIENT_ID}&scope=user&redirect_uri=${process.env.REACT_APP_REDIRECT_URL}`}
-            >
-              Login at GitHub
-            </a>
-          </p>
-        </div>
       </div>
     );
   };
 
-  return user ? <GitHubProfile user={user} /> : gitHubLoginForm();
+  return user ? <CV user={user} /> : gitHubLoginForm();
 }
 
 export default Landing;

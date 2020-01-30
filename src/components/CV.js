@@ -1,13 +1,26 @@
 import React, { useState } from "react";
+import GitHubLogin from "./githubLogin";
 
-function GitHubProfile({ user }) {
+function CV({ user }) {
   const [form, setForm] = useState(false);
-  const [bio, setBio] = useState();
+  const [bio, setBio] = useState(user.bio);
+  const [token, setToken] = useState();
 
-  const handleSubmit = () => {
-      console.log(bio)
-      
-  }
+  const handleBlur = () => {
+    if (token) {
+      fetch(` https://api.github.com/user`, {
+        method: "PATCH",
+        headers: {
+          Authorization: `token ${token}`,
+          Accept: "application/vnd.github.v3+json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          bio
+        })
+      }).then(response => setForm(false));
+    }
+  };
 
   return (
     <div>
@@ -98,21 +111,23 @@ function GitHubProfile({ user }) {
         <div className="hero-body">
           <div className="container">
             <h1 className="title">Bio</h1>
-            {form ? (
-              <form className="form" onSubmit={handleSubmit}>
+            {form && !token && (
+              <GitHubLogin token={token} setToken={setToken} />
+            )}
+            {form && token && (
+              <form className="form" onBlur={handleBlur}>
                 <textarea
                   className="github-bio-textarea"
                   defaultValue={user.bio}
                   onChange={e => setBio(e.target.value)}
                 />
               </form>
-            ) : null}
-            <h2
-              className="subtitle"
-              onClick={() => setForm(true)}
-            >
-              {user.bio}
-            </h2>
+            )}
+            {!form && (
+              <h2 className="subtitle" onClick={() => setForm(true)}>
+                {bio}
+              </h2>
+            )}
           </div>
         </div>
       </section>
@@ -146,4 +161,4 @@ function GitHubProfile({ user }) {
   );
 }
 
-export default GitHubProfile;
+export default CV;

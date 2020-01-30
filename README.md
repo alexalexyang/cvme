@@ -1,3 +1,13 @@
+# Environment variables
+
+- REACT_APP_GITHUB_ACCESS_TOKEN: Get your access token from GitHub [here](https://github.com/settings/tokens).
+
+- REACT_APP_GITHUB_APP_CLIENT_ID: Get it from your OAuth app in GitHub developer settings after setting it up.
+
+- REACT_APP_REDIRECT_URL: Must be the same redirect URL as set in your OAuth app in GitHub [developer settings](https://github.com/settings/developers).
+
+- REACT_APP_NODE_ENV: optional.
+
 # Insecure connection error
 
 If you serve this over https, you might encounter a security error about your insecure websocket connection. If so, open up node_modules/react-dev-utils/webpackHotDevClient.js and go to:
@@ -24,6 +34,8 @@ GraphQL is handled by Apollo. Styling by Bulma and SCSS.
 # Learning sources
 
 How to authenticate with GitHub on behalf of users using Heroku as a makeshift back end: [Implementing GitHub OAuth Flow in React](https://www.graphql.college/implementing-github-oauth-flow/)
+
+[Identifying and authorizing users for GitHub Apps](https://developer.github.com/apps/building-github-apps/identifying-and-authorizing-users-for-github-apps/)
 
 ## Security
 

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import About from "./components/About";
 import Landing from "./components/Landing";
+import TestPage from "./components/TestPage";
 import "./components/css/App.scss";
 
 function App() {
@@ -25,23 +26,12 @@ function App() {
         <Route path="/about">
           <About />
         </Route>
+        <Route path="/testpage">
+          <TestPage />
+        </Route>
       </Switch>
     </Router>
   );
 }
 
 export default App;
-
-{
-  /* <div className="outer" onClick={() => setState(true)}>
-<form className="subform" onSubmit={submitHandler}>
-  <div className="subform-input-wrapper">
-    <textarea onBlur={onBlurHandler} value="JUST A POST BUB" />
-  </div>
-  <div className="subform-button-wrapper">
-    <button className="button">submit</button>
-  </div>
-</form>
-)}
-</div> */
-}

@@ -1,5 +1,6 @@
 import { gql } from "apollo-boost";
 import { useQuery } from "@apollo/react-hooks";
+import { client } from "../index";
 
 export const userQuery = gql`
   query($login: String!) {
@@ -26,6 +27,12 @@ export const userQuery = gql`
     }
   }
 `;
+
+export const getGitHubProfile = (userLogin, setUser) =>
+  client
+    .query({ query: userQuery, variables: { login: userLogin } })
+    .then(response => setUser(response.data.user))
+    .catch(err => console.log(err));
 
 export const User = async login => {
   const { loading, error, data } = await useQuery(userQuery, {
