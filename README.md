@@ -53,13 +53,19 @@ Change `protocol: 'ws',` to `protocol: location.protocol === "https:" ? 'wss' : 
 
 # Some important libraries
 
-GraphQL is handled by Apollo. Styling by Bulma and SCSS. Tests by Jest.
+GraphQL by Apollo.
+
+Styling by Bulma and SCSS.
+
+Tests by Jest and Enzyme.
 
 # Some learning sources
 
 How to authenticate with GitHub on behalf of users using Heroku as a makeshift back end: [Implementing GitHub OAuth Flow in React](https://www.graphql.college/implementing-github-oauth-flow/)
 
 [Identifying and authorizing users for GitHub Apps](https://developer.github.com/apps/building-github-apps/identifying-and-authorizing-users-for-github-apps/)
+
+Set form input value with Enzyme: [1](https://github.com/airbnb/enzyme/issues/76), [2](https://stackoverflow.com/questions/37219772/enzyme-how-to-access-and-set-input-value)
 
 ## Security
 

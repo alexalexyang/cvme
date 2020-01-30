@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import GitHubLogin from "./githubLogin";
+import GitHubLogin from "./GitHubLogin";
 
 function CV({ user }) {
   const [form, setForm] = useState(false);
@@ -20,6 +20,7 @@ function CV({ user }) {
         })
       }).then(response => setForm(false));
     }
+    return 1;
   };
 
   return (
@@ -124,7 +125,10 @@ function CV({ user }) {
               </form>
             )}
             {!form && (
-              <h2 className="subtitle" onClick={() => setForm(true)}>
+              <h2
+                className="subtitle display-github-login"
+                onClick={() => setForm(true)}
+              >
                 {bio}
               </h2>
             )}

@@ -7,15 +7,6 @@ import TestPage from "./components/TestPage";
 import "./components/css/App.scss";
 
 function App() {
-  const submitHandler = e => {
-    e.preventDefault();
-    console.log("SubmitHandler", e.target.elements);
-  };
-
-  const onBlurHandler = e => {
-    console.log("onBlurHandler", e.target.value);
-  };
-
   return (
     <Router>
       <Navbar />

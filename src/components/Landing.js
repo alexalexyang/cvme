@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { getGitHubProfile, userQuery } from "./githubProfileGraphQL";
+import { getGitHubProfile } from "./utils/githubProfileGraphQL";
 import CV from "./CV";
 
 function Landing() {
@@ -8,10 +8,10 @@ function Landing() {
 
   const submitUserLogin = async e => {
     e.preventDefault();
-    getGitHubProfile(userLogin, setUser);
+    userLogin && getGitHubProfile(userLogin, setUser);
   };
 
-  const gitHubLoginForm = () => {
+  const gitHubUsernameForm = () => {
     return (
       <div className="section page-wrapper">
         <div className="container form-wrapper">
@@ -20,6 +20,7 @@ function Landing() {
               <input
                 className="input"
                 type="text"
+                name="github-username"
                 placeholder="What's your GitHub username?"
                 onChange={e => setUserLogin(e.target.value)}
               />
@@ -46,7 +47,7 @@ function Landing() {
     );
   };
 
-  return user ? <CV user={user} /> : gitHubLoginForm();
+  return user ? <CV user={user} /> : gitHubUsernameForm();
 }
 
 export default Landing;
