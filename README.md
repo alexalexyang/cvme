@@ -1,12 +1,18 @@
+# Introduction
+
+Live demo [here](https://cvme.notathoughtexperiment.me/). Enter your GitHub username the web app queries GitHub's v4 graphQL API to generate a little CV from your GitHub profile.
+
+Click on your bio to log into your GitHub account. It'll redirect you back to the landing page. Enter your username again, and click on your bio again. This time, a form will pop up and you can edit your GitHub username from here. No submit button. Click away from the form to submit (it's a small UX experiment for me). It sends a POST request to GitHub's v3 API endpoint to change your GitHub bio.
+
 # Setup
 
-There are three parts to setting up this project. The first is required and the other two are just to allow for POST requests to the GitHub API. Skip the other two if you don't need to change user GitHub bios.
+There are three parts to setting up this project. The first is the minimum that allows the web app to work and the other two are just to allow for POST requests to the GitHub API. Skip the other two if you don't need to change user GitHub bios.
 
-## Required setup
+## Minimum setup
 
 ### Environment variables
 
-Set up these environment variables:
+Set up these environment variables in a .env file in the project root directory or in the OS itself:
 
 - REACT_APP_GITHUB_ACCESS_TOKEN: Get your access token from GitHub [here](https://github.com/settings/tokens).
 
@@ -14,9 +20,19 @@ Set up these environment variables:
 
 - REACT_APP_REDIRECT_URL: Only required for POST requests. Must be the same redirect URL as set in your OAuth app in GitHub [developer settings](https://github.com/settings/developers).
 
+### Run with Docker
+
+A dev.Dockerfile and a docker-compose.yml file have been provided in the root directory.
+
+Run `docker-compose up` and it will set up a docker container, `git clone` the repository, and start up the dev server.
+
+You can access it at localhost:8001.
+
 ### Deploy
 
-Deploy it.
+Alternatively, deploy it wherever you like.
+
+The live demo front end is served from Netlify.
 
 ## Required for POST requests
 
@@ -30,7 +46,7 @@ Note the client ID and secret for the next step.
 
 ### Set up Gatekeeper
 
-Ideally, we shouldn't communicate OAuth credentials over a browser. But we also don't want to set up our own back end to do that. For a quick solution, deploy Gatekeeper to Heroku with this [convenient button](https://github.com/prose/gatekeeper#deploy-on-heroku). You'll have to fill in your GitHub OAuth app client ID and secret (from above).
+Ideally, we shouldn't communicate OAuth credentials over a browser. But we also don't want to set up our own back end to do that right now. For a quick solution, deploy Gatekeeper to Heroku with this [convenient button](https://github.com/prose/gatekeeper#deploy-on-heroku). You'll have to fill in your GitHub OAuth app client ID and secret (see previous step).
 
 # Insecure connection error
 
@@ -59,13 +75,19 @@ Styling by Bulma and SCSS.
 
 Tests by Jest and Enzyme.
 
+# Possible developments
+
+- Allow users to pick between different CV styles
+- Draw user data from other APIs
+- Rework GitHub login so users don't have to enter their username and click on their bio twice
+
 # Some learning sources
 
 How to authenticate with GitHub on behalf of users using Heroku as a makeshift back end: [Implementing GitHub OAuth Flow in React](https://www.graphql.college/implementing-github-oauth-flow/)
 
 [Identifying and authorizing users for GitHub Apps](https://developer.github.com/apps/building-github-apps/identifying-and-authorizing-users-for-github-apps/)
 
-Set form input value with Enzyme: [1](https://github.com/airbnb/enzyme/issues/76), [2](https://stackoverflow.com/questions/37219772/enzyme-how-to-access-and-set-input-value)
+Set form input value with Enzyme (none of these worked): [1](https://github.com/airbnb/enzyme/issues/76), [2](https://stackoverflow.com/questions/37219772/enzyme-how-to-access-and-set-input-value)
 
 ## Security
 

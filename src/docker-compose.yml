@@ -1,0 +1,15 @@
+version: '3'
+services:
+  app:
+    build:
+        dockerfile: dev.Dockerfile
+        context: .
+        args:
+            - REACT_APP_GITHUB_ACCESS_TOKEN=${REACT_APP_GITHUB_ACCESS_TOKEN}
+            - REACT_APP_GITHUB_APP_CLIENT_ID=${REACT_APP_GITHUB_APP_CLIENT_ID}
+            - REACT_APP_REDIRECT_URL=${REACT_APP_REDIRECT_URL}
+    ports:
+      - "8001:8001"
+    container_name: cvme
+    restart: always
+    command: npm start
