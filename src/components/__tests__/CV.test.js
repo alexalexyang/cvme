@@ -101,4 +101,10 @@ describe("<CV />", () => {
     expect(wrapper.exists(".github-link")).toEqual(true);
     expect(wrapper.exists(".display-github-login")).toEqual(false);
   });
+
+  it("Snapshot test for <CV />", () => {
+    const component = renderer.create(<CV user={user} />);
+    let tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
+  });
 });
