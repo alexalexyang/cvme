@@ -22,15 +22,15 @@ Set up these environment variables in a .env file in the project root directory 
 
 ### Run with Docker
 
-A dev.Dockerfile and a docker-compose.yml file have been provided in the root directory.
+A dev.Dockerfile and a docker-compose.yml file have been provided in the root directory so you can grab these if you don't want to `git clone` the whole repo.
 
-Run `docker-compose up` and it will set up a docker container, `git clone` the repository, and start up the dev server.
+After setting up environment variables as shown above, run `docker-compose up` from /src and Docker will set up a docker container, `git clone` the repository, and start up the dev server.
 
 You can access it at localhost:8001.
 
 ### Deploy
 
-Alternatively, deploy it wherever you like.
+Alternatively, `git clone` or fork the repo and deploy it wherever you like.
 
 The live demo front end is served from Netlify.
 
