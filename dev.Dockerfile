@@ -10,5 +10,6 @@ ENV REACT_APP_GITHUB_ACCESS_TOKEN ${REACT_APP_GITHUB_ACCESS_TOKEN}
 ENV REACT_APP_GITHUB_APP_CLIENT_ID ${REACT_APP_GITHUB_APP_CLIENT_ID}
 ENV REACT_APP_REDIRECT_URL ${REACT_APP_REDIRECT_URL}
 
-RUN git clone https://github.com/alexalexyang/cvme /cvme
+COPY . /cvme
+RUN ls
 RUN npm install && npm install --only=dev

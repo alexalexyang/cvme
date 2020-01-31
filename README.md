@@ -24,7 +24,7 @@ Set up these environment variables in a .env file in the project root directory 
 
 A dev.Dockerfile and a docker-compose.yml file have been provided in the root directory so you can grab these if you don't want to `git clone` the whole repo.
 
-After setting up environment variables as shown above, run `docker-compose up` from /src and Docker will set up a docker container, `git clone` the repository, and start up the dev server.
+After setting up environment variables as shown above, run `docker-compose up` from /src and Docker will set up a docker container and start up the dev server.
 
 You can access it at localhost:8001.
 
