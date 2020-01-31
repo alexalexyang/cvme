@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 
-function GitHubLogin({ token, setToken }) {
+function GitHubLogin({ setToken }) {
   const code =
     window.location.href.match(/\?code=(.*)/) &&
     window.location.href.match(/\?code=(.*)/)[1];
