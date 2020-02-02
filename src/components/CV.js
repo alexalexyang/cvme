@@ -10,16 +10,15 @@ function CV({ user }) {
   const handleBlur = () => {
     if (token) {
       axios
-        .post(`https://api.github.com/user`, {
+        .post({
+          url: `https://api.github.com/user`,
           method: "PATCH",
           headers: {
             Authorization: `token ${token}`,
             Accept: "application/vnd.github.v3+json",
             "Content-Type": "application/json"
           },
-          body: JSON.stringify({
-            bio
-          })
+          data: { bio }
         })
         .then(response => setForm(false));
     }
