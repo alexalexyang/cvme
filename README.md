@@ -75,6 +75,22 @@ Styling by Bulma and SCSS.
 
 Tests by Jest and react-testing-library.
 
+# Main structure
+
+Not counting the About page (handled by src/About.js) there are two main pages: the landing page (Landing.js) and the CV page (CV.js).
+
+## Landing.js
+
+Landing.js uses `getGitHubProfile()` to access GitHub's v4 graphQL API via the Apollo client. This fetches the user's GitHub profile.
+
+## CV.js
+
+The profile is passed down to CV.js, which renders it.
+
+On clicking the bio, a GitHub login link appears. User can authenticate with GitHub here and get redirected back to the landing page. User can re-enter their username again to get their profile. The next time they click on their bio, it will bring up a form.
+
+Filling in this form and clicking away triggers `handleBlur()` in CV.js. This sends a PATCH request to GitHub's v3 API to update the user's bio.
+
 # Possible developments
 
 - Allow users to pick between different CV styles
