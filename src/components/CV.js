@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import GitHubLogin from "./GitHubLogin";
+import axios from "axios";
 
 function CV({ user }) {
   const [form, setForm] = useState(false);
@@ -8,19 +9,20 @@ function CV({ user }) {
 
   const handleBlur = () => {
     if (token) {
-      fetch(` https://api.github.com/user`, {
-        method: "PATCH",
-        headers: {
-          Authorization: `token ${token}`,
-          Accept: "application/vnd.github.v3+json",
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          bio
+      axios
+        .post(`https://api.github.com/user`, {
+          method: "PATCH",
+          headers: {
+            Authorization: `token ${token}`,
+            Accept: "application/vnd.github.v3+json",
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            bio
+          })
         })
-      }).then(response => setForm(false));
+        .then(response => setForm(false));
     }
-    return 1;
   };
 
   return (
@@ -126,7 +128,8 @@ function CV({ user }) {
             )}
             {!form && (
               <h2
-                className="subtitle display-github-login"
+                data-testid="bio"
+                className="subtitle"
                 onClick={() => setForm(true)}
               >
                 {bio}
