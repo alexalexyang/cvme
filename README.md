@@ -80,6 +80,7 @@ Tests by Jest and react-testing-library.
 - Allow users to pick between different CV styles
 - Draw user data from other APIs
 - Rework GitHub login so users don't have to enter their username and click on their bio twice
+- Mock API calls
 
 # Some learning sources
 
