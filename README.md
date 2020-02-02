@@ -73,7 +73,7 @@ GraphQL by Apollo.
 
 Styling by Bulma and SCSS.
 
-Tests by Jest and Enzyme.
+Tests by Jest and react-testing-library.
 
 # Possible developments
 
