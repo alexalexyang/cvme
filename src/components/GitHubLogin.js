@@ -20,7 +20,7 @@ function GitHubLogin({ setToken }) {
       <div className="container">
         <p>
           <a
-            className="github-link"
+            data-testid="github-link"
             href={`https://github.com/login/oauth/authorize?client_id=${process.env.REACT_APP_GITHUB_APP_CLIENT_ID}&scope=user&redirect_uri=${process.env.REACT_APP_REDIRECT_URL}`}
           >
             Login at GitHub

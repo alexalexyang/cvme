@@ -1,15 +1,18 @@
 import React from "react";
-import { act } from "react-dom/test-utils";
+import {
+  render,
+  cleanup,
+  fireEvent,
+  waitForElement
+} from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
-import renderer from "react-test-renderer";
-import { configure, mount, shallow } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
-configure({ adapter: new Adapter() });
+import { act } from "react-dom/test-utils";
 
 global.React = React;
-global.mount = mount;
-global.shallow = shallow;
 
 global.act = act;
 
-global.renderer = renderer;
+global.render = render;
+global.cleanup = cleanup;
+global.fireEvent = fireEvent;
+global.waitForElement = waitForElement;

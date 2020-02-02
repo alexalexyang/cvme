@@ -126,7 +126,8 @@ function CV({ user }) {
             )}
             {!form && (
               <h2
-                className="subtitle display-github-login"
+                data-testid="bio"
+                className="subtitle"
                 onClick={() => setForm(true)}
               >
                 {bio}

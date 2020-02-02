@@ -66,45 +66,41 @@ const userMissingData = {
   }
 };
 
-describe("<CV />", () => {
-  let wrapper;
+afterEach(cleanup);
 
-  beforeEach(() => {
-    wrapper = mount(<CV user={user} />);
-  });
+it("Renders user data", () => {
+  const { getByTestId } = render(<CV user={user} />);
+  const target = getByTestId("bio");
+  expect(target).toHaveTextContent(
+    "A wonderful programmer who loves swimming."
+  );
+});
 
-  afterEach(() => wrapper.unmount());
+it("Renders empty string where user properties are missing", () => {
+  const { getByTestId } = render(<CV user={userMissingData} />);
+  const bio = getByTestId("bio");
+  expect(bio).toHaveTextContent("");
+});
 
-  it("Successfully passes user data as props to <CV />", () => {
-    expect(wrapper.props().user).toEqual(user);
-  });
+it("Bio exists and GitHub login does not", () => {
+  const { queryByTestId } = render(<CV user={user} />);
+  const bio = queryByTestId("bio");
+  const githubLink = queryByTestId("github-link");
+  expect(githubLink).toBeNull();
+  expect(bio).toBeTruthy();
+});
 
-  it("Successfully renders user data", () => {
-    const value = wrapper.find("h2").text();
-    expect(value).toEqual("A wonderful programmer who loves swimming.");
-  });
+it("Bio goes away on click and GitHub login takes its place", () => {
+  const { getByTestId, queryByTestId } = render(<CV user={user} />);
+  const bio = getByTestId("bio");
+  fireEvent.click(bio);
+  const githubLink = queryByTestId("github-link");
+  const bioExists = queryByTestId("bio");
+  expect(githubLink).toBeTruthy();
+  expect(bioExists).toBeNull();
+});
 
-  it("Renders empty string where user properties are missing", () => {
-    const wrapper = mount(<CV user={userMissingData} />);
-    const value = wrapper.find("h2").text();
-    expect(value).toEqual("");
-    wrapper.unmount();
-  });
-
-  it("Checks that bio exists and GitHub login does not", () => {
-    expect(wrapper.exists(".github-link")).toEqual(false);
-    expect(wrapper.exists(".display-github-login")).toEqual(true);
-  });
-
-  it("TChecks that bio has gone and GitHub login has taken its place", () => {
-    wrapper.find("h2").simulate("click");
-    expect(wrapper.exists(".github-link")).toEqual(true);
-    expect(wrapper.exists(".display-github-login")).toEqual(false);
-  });
-
-  it("Snapshot test for <CV />", () => {
-    const component = renderer.create(<CV user={user} />);
-    let tree = component.toJSON();
-    expect(tree).toMatchSnapshot();
-  });
+it("Renders page", () => {
+  const { asFragment } = render(<CV user={user} />);
+  expect(asFragment()).toMatchSnapshot();
 });
